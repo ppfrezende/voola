@@ -3,15 +3,11 @@ import Image from 'next/image';
 import { FilmProps } from '../../pages/index';
 
 export function Thumbnail({
-  id,
   title,
-  mediaType,
   description,
   releaseDate,
   primaryImagePath,
   secondaryImagePath,
-  popularity,
-  voteAverage,
   likesCount,
 }: FilmProps) {
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/original/';
@@ -56,7 +52,7 @@ export function Thumbnail({
             opacity-0
             group-hover:opacity-100"
         >
-          {mediaType && `${mediaType} ·`} {releaseDate} ·{' '}
+          {releaseDate} ·
           <ThumbUpIcon className="h-5 mx-2" />
           {likesCount}
         </p>

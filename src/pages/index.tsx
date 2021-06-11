@@ -7,13 +7,10 @@ import { Thumbnail } from '../components/Thumbnail';
 export interface FilmProps {
   id: number;
   title: string;
-  mediaType: string;
   description: string;
   releaseDate: string;
   primaryImagePath: string;
   secondaryImagePath: string;
-  popularity: number;
-  voteAverage: number;
   likesCount: number;
 }
 
@@ -23,7 +20,15 @@ interface HomeProps {
 
 export default function Home({ results }: HomeProps) {
   return (
-    <div>
+    <div
+      className="
+        px-5 
+        my-10 
+        sm:grid 
+        md:grid-cols-2
+        xl:grid-cols-3
+        3xl:flex flex-wrap justify-center"
+    >
       {results.map(result => (
         <Thumbnail key={result.id} {...result} />
       ))}
@@ -42,13 +47,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
     return {
       id: movie.id,
       title: movie.original_title || movie.original_name,
-      mediaType: movie.media_type,
       description: movie.overview,
-      releaseDate: movie.release_date || movie.first_air_date,
+      releaseDate: movie.release_date || movie.first_air_date || null,
       primaryImagePath: movie.backdrop_path,
       secondaryImagePath: movie.poster_path,
-      popularity: movie.popularity,
-      voteAverage: movie.vote_average,
       likesCount: movie.vote_count,
     };
   });

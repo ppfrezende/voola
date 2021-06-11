@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         'hammersmith-one': ['Hammersmith One', 'cursive'],
       },
+      screens: {
+        '3xl': '2000px',
+      },
     },
   },
   variants: {
