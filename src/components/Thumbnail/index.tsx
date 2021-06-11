@@ -4,7 +4,7 @@ import { FilmProps } from '../../pages/index';
 
 import { forwardRef } from 'react';
 
-const Thumbnail = forwardRef(
+const Thumbnail = forwardRef<HTMLDivElement, FilmProps>(
   (
     {
       title,
@@ -13,7 +13,7 @@ const Thumbnail = forwardRef(
       primaryImagePath,
       secondaryImagePath,
       likesCount,
-    }: FilmProps,
+    },
     ref
   ) => {
     const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/original/';
