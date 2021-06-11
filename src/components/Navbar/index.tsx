@@ -1,6 +1,9 @@
+import { useRouter } from 'next/dist/client/router';
 import request from '../../services/request';
 
 export function Navbar() {
+  const router = useRouter();
+
   return (
     <nav className="relative">
       <div
@@ -17,6 +20,9 @@ export function Navbar() {
         {Object.entries(request).map(([key, { title, url }]) => (
           <h2
             key={key}
+            onClick={() => {
+              router.push(`/?genre=${key}`);
+            }}
             className="
               cursor-pointer 
               transition duration-100 
