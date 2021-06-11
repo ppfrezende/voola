@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const genre = context.query.genre;
 
   const { data } = await api.get(
-    `${request[genre.toString()]?.url || request.fetchTrending.url}`
+    `${(genre && request[genre.toString()]?.url) || request.fetchTrending.url}`
   );
 
   const results = data.results.map(movie => {
