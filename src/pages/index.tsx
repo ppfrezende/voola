@@ -7,7 +7,9 @@ import { Thumbnail } from '../components/Thumbnail';
 export interface FilmProps {
   id: number;
   title: string;
+  mediaType: string;
   description: string;
+  releaseDate: string;
   primaryImagePath: string;
   secondaryImagePath: string;
   popularity: number;
@@ -40,7 +42,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
     return {
       id: movie.id,
       title: movie.original_title || movie.original_name,
+      mediaType: movie.media_type,
       description: movie.overview,
+      releaseDate: movie.release_date || movie.first_air_date,
       primaryImagePath: movie.backdrop_path,
       secondaryImagePath: movie.poster_path,
       popularity: movie.popularity,
@@ -55,7 +59,3 @@ export const getServerSideProps: GetServerSideProps = async context => {
     },
   };
 };
-
-// backdrop_path
-// poster_path
-// overview
