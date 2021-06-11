@@ -1,4 +1,9 @@
-# :movie_camera: VOO·LA APP
+<p align="center">
+  <img src="assets/logotype.png" alt="voo.la" />
+
+</p>
+
+### :movie_camera: voo·la app
 
 Application that simulates a responsive movie catalog using NextJS, Tailwind CSS and TheMovieDatabase API.
 The company name is fictitious and my idea, as well as its logo.
