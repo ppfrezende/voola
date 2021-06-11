@@ -1,11 +1,40 @@
-import Head from 'next/head';
+import { GetServerSideProps } from 'next';
+import { api } from '../services/api';
+import request from '../services/request';
 
-export default function Home() {
+import { Thumbnail } from '../components/Thumbnail';
+
+interface Genre {
+  title: string;
+  url: string;
+}
+
+interface HomeProps {
+  results: Genre[];
+}
+
+export default function Home({ results }: HomeProps) {
   return (
-    <>
-      <Head>
-        <title>Home | Voo.La</title>
-      </Head>
-    </>
+    <div>
+      {results.map(result => (
+        <Thumbnail />
+      ))}
+    </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async context => {
+  const genre = context.query.genre;
+
+  const { data } = await api.get(
+    `${request[genre]?.url || request.fetchTrending.url}`
+  );
+
+  const results = data.results;
+
+  return {
+    props: {
+      results,
+    },
+  };
+};

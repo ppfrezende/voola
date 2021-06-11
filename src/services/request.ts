@@ -1,7 +1,7 @@
 export default {
   fetchTrending: {
     title: 'Trending',
-    url: `/treding/all/week?api_key=${process.env.API_KEY}&language=en-US`,
+    url: `/trending/all/week?api_key=${process.env.API_KEY}&language=en-US`,
   },
 
   fetchTopRated: {
