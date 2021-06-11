@@ -1,8 +1,10 @@
 import { GetServerSideProps } from 'next';
+import FlipMove from 'react-flip-move';
+
 import { api } from '../services/api';
 import request from '../services/request';
 
-import { Thumbnail } from '../components/Thumbnail';
+import Thumbnail from '../components/Thumbnail';
 
 export interface FilmProps {
   id: number;
@@ -20,7 +22,7 @@ interface HomeProps {
 
 export default function Home({ results }: HomeProps) {
   return (
-    <div
+    <FlipMove
       className="
         px-5 
         my-10 
@@ -32,7 +34,7 @@ export default function Home({ results }: HomeProps) {
       {results.map(result => (
         <Thumbnail key={result.id} {...result} />
       ))}
-    </div>
+    </FlipMove>
   );
 }
 
