@@ -4,20 +4,26 @@ import request from '../services/request';
 
 import { Thumbnail } from '../components/Thumbnail';
 
-interface Genre {
+export interface FilmProps {
+  id: number;
   title: string;
-  url: string;
+  description: string;
+  primaryImagePath: string;
+  secondaryImagePath: string;
+  popularity: number;
+  voteAverage: number;
+  likesCount: number;
 }
 
 interface HomeProps {
-  results: Genre[];
+  results: FilmProps[];
 }
 
 export default function Home({ results }: HomeProps) {
   return (
     <div>
       {results.map(result => (
-        <Thumbnail />
+        <Thumbnail key={result.id} {...result} />
       ))}
     </div>
   );
@@ -30,7 +36,18 @@ export const getServerSideProps: GetServerSideProps = async context => {
     `${request[genre]?.url || request.fetchTrending.url}`
   );
 
-  const results = data.results;
+  const results = data.results.map(movie => {
+    return {
+      id: movie.id,
+      title: movie.original_title || movie.original_name,
+      description: movie.overview,
+      primaryImagePath: movie.backdrop_path,
+      secondaryImagePath: movie.poster_path,
+      popularity: movie.popularity,
+      voteAverage: movie.vote_average,
+      likesCount: movie.vote_count,
+    };
+  });
 
   return {
     props: {
@@ -38,3 +55,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
     },
   };
 };
+
+// backdrop_path
+// poster_path
+// overview
